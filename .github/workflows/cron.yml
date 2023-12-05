@@ -1,5 +1,8 @@
 name: Cron
 
+permissions:
+  contents: write
+  
 on:
   workflow_dispatch:
   schedule:
@@ -24,9 +27,8 @@ jobs:
           SPONSORKIT_AFDIAN_USER_ID: ${{ secrets.SPONSORKIT_AFDIAN_USER_ID }}
           SPONSORKIT_AFDIAN_TOKEN: ${{ secrets.SPONSORKIT_AFDIAN_TOKEN }}
       - name: Commit
-        uses: EndBug/add-and-commit@v4
+        uses: EndBug/add-and-commit@v9
         with:
+          default_author: github_actions
           message: "chore: update sponsors.svg"
           add: "sponsors.*"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
